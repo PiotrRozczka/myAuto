@@ -13,15 +13,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Car {
-  id    String @id @default(uuid())
-  brand Brand  @relation(fields: [brandId], references: [id])
-
-  brandId String
+enum FuelType {
+  gas
+  diesel
+  lpg
+  electric
+  hybrid
 }
 
-model Brand {
+enum TransmissionType {
+  manual
+  automatic
+  semi_automatic
+}
+
+enum CarState {
+  broken
+  fine
+}
+
+model Car {
+  id                String           @id @default(uuid())
+  model             CarModel         @relation(fields: [carModelId], references: [id])
+  year              Int
+  milage            Int
+  price             Float
+  fuel_type         FuelType
+  transmission_type TransmissionType
+  horse_power       Int
+  engine_capacity   Int
+  color             String
+  origin            Origin           @relation(fields: [originId], references: [id])
+  state             CarState
+
+  carModelId String
+  fuelTypeId String
+  originId   String
+}
+
+model CarMake {
+  id     String     @id @default(uuid())
+  name   String
+  models CarModel[]
+}
+
+model Origin {
   id   String @id @default(uuid())
   name String
   cars Car[]
+}
+
+model CarModel {
+  id   String  @id @default(uuid())
+  make CarMake @relation(fields: [carMakeId], references: [id])
+
+  name      String
+  carMakeId String
+  cars      Car[]
 }
