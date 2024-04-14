@@ -1,7 +1,16 @@
 import { CarFront, User } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator
+} from "@/components/ui/dropdown-menu";
+import { SignOutButton } from "@/components/SignOutButton";
 
 export const Navbar = async () => {
   const session = await auth();
@@ -19,8 +28,22 @@ export const Navbar = async () => {
         )}
         {session?.user && (
           <span className="flex gap-2">
-            <User />
-            {session.user.email}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex">
+                <User />
+                {session.user.email}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Account</DropdownMenuLabel>
+                <DropdownMenuItem>
+                  <Link href={"/mycars"}>My Cars</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <SignOutButton />
+                </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
           </span>
         )}
         <Link href={"/car/create"}>
