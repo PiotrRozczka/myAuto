@@ -3,42 +3,57 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
+import { z } from "zod";
+import { LoginSchema } from "@/lib/validators/user";
+import { login } from "@/actions/login";
+import { toast } from "sonner";
 
 interface IFormInput {
-  login: string;
+  email: string;
   password: string;
 }
 
 export const Login = () => {
   const form = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = async (
+    values: z.infer<typeof LoginSchema>,
+  ) => {
+    const result = await login(values);
+    if (result?.error) toast.error(result?.error);
+
+    console.log(result);
+  };
 
   return (
     <Form {...form}>
-      <FormField
-        control={form.control}
-        name="login"
-        render={() => (
-          <FormItem>
-            <FormLabel>Login: </FormLabel>
-            <FormControl>
-              <Input type="text" />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="password"
-        render={() => (
-          <FormItem>
-            <FormLabel>Password: </FormLabel>
-            <FormControl>
-              <Input type="text" />
-            </FormControl>
-          </FormItem>
-        )}
-      />
-      <Button>Login</Button>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email: </FormLabel>
+              <FormControl>
+                <Input type="email" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password: </FormLabel>
+              <FormControl>
+                <Input type="password" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <Button>Login</Button>
+      </form>
     </Form>
   );
 };
