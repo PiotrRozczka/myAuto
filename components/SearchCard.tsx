@@ -92,7 +92,7 @@ export const SearchCard = () => {
                     <FormControl>
                       <Select disabled={!make}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Find your make" />
+                          <SelectValue placeholder="Find your model" />
                         </SelectTrigger>
                         <SelectContent>
                           {carModels.map((carModel) => (
