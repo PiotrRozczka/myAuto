@@ -5,7 +5,10 @@ import { Button } from "./ui/button";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { RegisterSchema } from "@/lib/validators/user";
+import { LoginSchema, RegisterSchema } from "@/lib/validators/user";
+import { register } from "@/actions/regster";
+import { toast } from "sonner";
+import { login } from "@/actions/login";
 
 interface IFormInput {
   name: string;
@@ -17,26 +20,36 @@ export const Register = () => {
   const form = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (
-    values: z.infer<typeof RegisterSchema>,
+    values: z.infer<typeof RegisterSchema>
   ) => {
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+      const data = RegisterSchema.parse(values);
+      const response = await register(data);
 
-      if (response.ok) {
-        const user = await response.json();
-        console.log(user);
-      } else {
-        const message = await response.text();
-        console.error(message);
+      if (response.error) {
+        toast.error(response.error);
+        return;
       }
+
+      signIn({ email: data.email, password: data.password });
     } catch (error) {
-      console.error(error);
+      console.log(error);
+    }
+  };
+
+  const signIn = async (values: z.infer<typeof LoginSchema>) => {
+    try {
+      const data = LoginSchema.parse(values);
+      const response = await login(data);
+
+      if (response && response.error) {
+        toast.error(response.error);
+        return;
+      }
+
+      toast.success("You have been successfully registered!");
+    } catch (error) {
+      console.log(error);
     }
   };
 

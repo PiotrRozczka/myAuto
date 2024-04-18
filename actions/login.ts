@@ -21,12 +21,10 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
   console.log(email, password, existingUser);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Nieprawidłowe dane logowania." };
+    return { error: "Invalid credentials." };
   }
 
   try {
-    console.log("trying to sign in");
-
     await signIn("credentials", {
       email,
       password,
@@ -36,9 +34,12 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Nieprawidłowe dane logowania." };
+          return { error: "Invalid credentials." };
         default:
-          return { error: "Coś poszło nie tak!" };
+          return {
+            error:
+              "Unknown error occurred. Contact the site administrator for clarification.",
+          };
       }
     }
 

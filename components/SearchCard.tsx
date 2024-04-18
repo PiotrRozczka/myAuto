@@ -40,11 +40,9 @@ export const SearchCard = () => {
 
   useEffect(() => {
     if (make) {
-      getCarModelByCarMakeId(make).then((carModel) =>
-        setCarModels(carModel)
-      );
+      getCarModelByCarMakeId(make).then((carModel) => setCarModels(carModel));
     }
-  },[make])
+  }, [make]);
 
   console.log(make);
 
@@ -60,54 +58,54 @@ export const SearchCard = () => {
       <CardContent>
         <Form {...form}>
           <div className="flex flex-col gap-3 ">
-          <div className="flex gap-10">
-            <FormField
-              control={form.control}
-              name="make"
-              render={() => (
-                <FormItem className="w-1/2">
-                  <FormLabel>Make</FormLabel>
-                  <FormControl>
-                    {/* @ts-ignore */}
-                    <Select value={make} onValueChange={(e)=> setMake(e)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Find your make" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {carMakes.map((carMake) => (
-                          <SelectItem value={carMake.id}>
-                            {carMake.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-             <FormField
-              control={form.control}
-              name="model"
-              render={() => (
-                <FormItem className="w-1/2">
-                  <FormLabel>Model</FormLabel>
-                  <FormControl>
-                    <Select disabled={!make}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Find your make" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {carModels.map((carModel) => (
-                          <SelectItem value={carModel.id}>
-                            {carModel.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+            <div className="flex gap-10">
+              <FormField
+                control={form.control}
+                name="make"
+                render={() => (
+                  <FormItem className="w-1/2">
+                    <FormLabel>Make</FormLabel>
+                    <FormControl>
+                      {/* @ts-ignore */}
+                      <Select value={make} onValueChange={(e) => setMake(e)}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Find your make" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {carMakes.map((carMake) => (
+                            <SelectItem value={carMake.id}>
+                              {carMake.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="model"
+                render={() => (
+                  <FormItem className="w-1/2">
+                    <FormLabel>Model</FormLabel>
+                    <FormControl>
+                      <Select disabled={!make}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Find your make" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {carModels.map((carModel) => (
+                            <SelectItem value={carModel.id}>
+                              {carModel.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
             </div>
             <div className="flex gap-10">
               <FormField
