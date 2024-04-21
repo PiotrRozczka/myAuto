@@ -9,10 +9,11 @@ import {
 } from "@/components/ui/card";
 import { FormLabel } from "@/components/ui/form";
 import { FC, useEffect, useState } from "react";
+import { ImageDragDrop } from "@/components/ImageDragDrop";
 
-interface pageProps {}
+interface pageProps { }
 
-const page: FC<pageProps> = ({}) => {
+const page: FC<pageProps> = ({ }) => {
   const [carMakes, setCarMakes] = useState<CarMake[]>([]);
   const [carModels, setCarModels] = useState<CarModel[]>([]);
 
@@ -31,7 +32,7 @@ const page: FC<pageProps> = ({}) => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form></form>
+          <ImageDragDrop />
         </CardContent>
       </Card>
     </main>
