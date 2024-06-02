@@ -35,7 +35,7 @@ export const ImageDragDrop = ({
       }) => (
         <div className="flex items-center flex-col">
           <button
-            className="h-10 border-2 border-black h-32 w-full rounded-md"
+            className="h-10 border-2 border-zinc-300 h-32 w-full rounded-md"
             style={isDragging ? { color: "red" } : undefined}
             onClick={onImageUpload}
             {...dragProps}

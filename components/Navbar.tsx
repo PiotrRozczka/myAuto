@@ -46,7 +46,7 @@ export const Navbar = async () => {
             </DropdownMenu>
           </span>
         )}
-        <Link href={"/car/create"}>
+        <Link href={"/cars/create"}>
           <Button className="flex gap-2">
             <CarFront />
             Sell your car

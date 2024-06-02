@@ -14,11 +14,11 @@ datasource db {
 }
 
 enum FuelType {
-  gas
-  diesel
-  lpg
-  electric
-  hybrid
+  Gas
+  Diesel
+  Lpg
+  Electric
+  Hybrid
 }
 
 enum TransmissionType {

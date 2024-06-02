@@ -1,5 +1,5 @@
 export const publicRoutes: string[] = ["/"];
-export const privateRoutes = ["/car/create"];
+export const privateRoutes = ["/cars/create"];
 export const authRoutes = ["/login"];
 
 export const apiAuthPrefix = "/api/auth";
