@@ -18,9 +18,9 @@ export const getCars = async (options: searchOptions) => {
   }
   if (options.make) {
     where.AND.push({
-     model:{
-         carMakeId: options.make
-     },
+      model: {
+        carMakeId: options.make,
+      },
     });
   }
   if (options.milageFrom) {
