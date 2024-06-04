@@ -38,7 +38,7 @@ export const CarCard = ({
         <CardHeader>
           <CardTitle className="flex justify-between">
             <span>{name}</span>{" "}
-            <span className="text-primary">{price} PLN</span>
+            <span className="text-primary">{price.toLocaleString()} PLN</span>
           </CardTitle>
           <CardDescription className="flex gap-3">
             <Gauge size={20} />

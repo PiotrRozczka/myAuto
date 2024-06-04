@@ -52,8 +52,9 @@ export const SearchCard = () => {
   }, [make]);
 
   const onSubmit: SubmitHandler<IFormInput> = async (values) => {
-
-    push(`cars/search?make=${make}&model=${model}&milageFrom=${milageFrom}&milageTo=${milageTo}`);
+    push(
+      `/cars/search?make=${make}&model=${model}&milageFrom=${milageFrom}&milageTo=${milageTo}`,
+    );
   };
 
   return (
@@ -107,7 +108,9 @@ export const SearchCard = () => {
                       <FormControl>
                         <Select
                           disabled={!make}
-                          {...field  /* @ts-ignore */}
+                          {
+                            ...field /* @ts-ignore */
+                          }
                           onValueChange={(e) => setModel(e)}
                         >
                           <SelectTrigger>
@@ -134,7 +137,13 @@ export const SearchCard = () => {
                     <FormItem className="w-1/2">
                       <FormLabel>Milage</FormLabel>
                       <FormControl>
-                        <Input type="number" placeholder="From" {...field}  value={milageFrom} onChange={(e) => setMilageFrom(e.target.value)} />
+                        <Input
+                          type="number"
+                          placeholder="From"
+                          {...field}
+                          value={milageFrom}
+                          onChange={(e) => setMilageFrom(e.target.value)}
+                        />
                       </FormControl>
                     </FormItem>
                   )}
@@ -146,7 +155,13 @@ export const SearchCard = () => {
                     <FormItem className="w-1/2">
                       <FormLabel className="invisible">Milage to</FormLabel>
                       <FormControl>
-                        <Input type="number" placeholder="To" {...field} value={milageTo} onChange={(e) => setMilageTo(e.target.value)} />
+                        <Input
+                          type="number"
+                          placeholder="To"
+                          {...field}
+                          value={milageTo}
+                          onChange={(e) => setMilageTo(e.target.value)}
+                        />
                       </FormControl>
                     </FormItem>
                   )}

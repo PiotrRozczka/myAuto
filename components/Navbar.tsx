@@ -36,7 +36,7 @@ export const Navbar = async () => {
               <DropdownMenuContent>
                 <DropdownMenuLabel>Account</DropdownMenuLabel>
                 <DropdownMenuItem>
-                  <Link href={"/mycars"}>My Cars</Link>
+                  <Link href={"/cars/my"}>My Cars</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>

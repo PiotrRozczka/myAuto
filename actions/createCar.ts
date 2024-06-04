@@ -30,6 +30,7 @@ export const createCar = async (input: {
   engine_capacity: number;
   transmission_type: TransmissionType;
   images: string[];
+  city: string;
 }) => {
   const session = await auth();
   const car = await db.car.create({
@@ -43,6 +44,7 @@ export const createCar = async (input: {
       color: input.color,
       transmission_type: input.transmission_type as TransmissionType,
       engine_capacity: input.engine_capacity,
+      city: input.city,
       model: {
         connect: {
           id: input.model,

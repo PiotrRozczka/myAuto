@@ -61,6 +61,7 @@ const Page: FC<pageProps> = ({}) => {
   const [year, setYear] = useState(0);
   const [engineCapacity, setEngineCapacity] = useState(0);
   const [transmissionType, setTransmissionType] = useState("");
+  const [city, setCity] = useState("");
 
   type FileState = {
     file: File | string;
@@ -130,6 +131,7 @@ const Page: FC<pageProps> = ({}) => {
       engine_capacity: engineCapacity,
       transmission_type: transmissionType as TransmissionType,
       images: uploadedImagePaths,
+      city,
     };
 
     try {
@@ -314,6 +316,10 @@ const Page: FC<pageProps> = ({}) => {
           <div>
             <Label>Color</Label>
             <Input value={color} onChange={(e) => setColor(e.target.value)} />
+          </div>
+          <div>
+            <Label>City</Label>
+            <Input value={city} onChange={(e) => setCity(e.target.value)} />
           </div>
           <div>
             <Label>Price</Label>
