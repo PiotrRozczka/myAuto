@@ -6,7 +6,7 @@ export const ImageDragDrop = ({
 }: {
   imageState: [
     images: ImageListType,
-    setImages: Dispatch<SetStateAction<ImageListType>>
+    setImages: Dispatch<SetStateAction<ImageListType>>,
   ];
 }) => {
   const MAX_IMAGES = 30;

@@ -22,14 +22,14 @@ enum FuelType {
 }
 
 enum TransmissionType {
-  manual
-  automatic
-  semi_automatic
+  Manual
+  Automatic
+  SemiAutomatic
 }
 
 enum CarState {
-  broken
-  fine
+  Working
+  Broken
 }
 
 model User {
@@ -58,7 +58,6 @@ model Car {
   owner             User             @relation(fields: [userId], references: [id])
   userId            String
   carModelId        String
-  fuelTypeId        String
   originId          String
   images            CarImage[]
 }

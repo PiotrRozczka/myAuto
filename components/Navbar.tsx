@@ -1,4 +1,4 @@
-import { CarFront, User } from "lucide-react";
+import { CarFront, MessageSquareMore, User } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { auth, signOut } from "@/auth";
@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-  DropdownMenuSeparator
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { SignOutButton } from "@/components/SignOutButton";
 
@@ -42,9 +42,17 @@ export const Navbar = async () => {
                 <DropdownMenuItem>
                   <SignOutButton />
                 </DropdownMenuItem>
-                </DropdownMenuContent>
+              </DropdownMenuContent>
             </DropdownMenu>
           </span>
+        )}
+        {session?.user && (
+          <Link href={"/chat"}>
+            {" "}
+            <Button variant="secondary">
+              <MessageSquareMore />
+            </Button>
+          </Link>
         )}
         <Link href={"/cars/create"}>
           <Button className="flex gap-2">

@@ -20,7 +20,7 @@ export const Register = () => {
   const form = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (
-    values: z.infer<typeof RegisterSchema>
+    values: z.infer<typeof RegisterSchema>,
   ) => {
     try {
       const data = RegisterSchema.parse(values);

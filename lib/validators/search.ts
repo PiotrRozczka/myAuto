@@ -1,6 +1,6 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const searchValidator = z.object({
-    make: z.string().optional(),
-    model: z.string().optional()
-})
+  make: z.string().optional(),
+  model: z.string().optional(),
+});
