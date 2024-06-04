@@ -1,3 +1,7 @@
+// type Car = {
+//   id: string;
+// }
+
 type CarMake = {
   id: string;
   name: string;

@@ -116,7 +116,6 @@ const Page: FC<pageProps> = ({}) => {
         }
       }),
     );
-    console.log(uploadedImagePaths, 'image paths')
 
     const car = {
       model,
@@ -133,13 +132,11 @@ const Page: FC<pageProps> = ({}) => {
       images: uploadedImagePaths,
     };
 
-    console.log(car, 'precreate car');
-
     try {
       const newCar = await createCar(car);
 
       toast.success("Car created successfully!");
-      console.log(newCar);
+
       push(`/cars/${newCar.id}`);
     } catch (e) {
       toast.error("Couldn't create a car. Please check the form.");
